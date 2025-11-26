@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Selamat Ulang Tahun Latieff!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<style>
+/* =============================
+   BASE STYLE
+   ============================= */
+:root{
+  --bg1:#060915;
+  --bg2:#0b0f2a;
+  --gold:#f0dba5;
+  --glass:rgba(255,255,255,0.06);
+}
+
+html,body{
+  margin:0; padding:0;
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  font-family:'Fredoka One',cursive;
+  color:white;
+  text-align:center;
+}
+
+/* container */
+.container{
+  max-width:860px;
+  margin:0 auto;
+  padding:40px 20px 90px;
+}
+
+/* =============================
+   STARS
+   ============================= */
+.star{
+  position:fixed;
+  width:3px;height:3px;
+  background:white;
+  border-radius:50%;
+  opacity:.6;
+  pointer-events:none;
+  animation:twinkle 3s ease-in-out infinite;
+  filter:drop-shadow(0 0 4px rgba(255,255,255,.6));
+}
+@keyframes twinkle{
+  0%{opacity:.2; transform:scale(.8);}
+  50%{opacity:1; transform:scale(1.3);}
+  100%{opacity:.2; transform:scale(.8);}
+}
+
+/* =============================
+   ULTRA LUX TITLE
+   ============================= */
+.title{
+  max-width:92%;
+  margin:0 auto 28px;
+  padding:16px 20px;
+  font-size:28px;
+  color:#fff;
+  background:rgba(255,255,255,0.05);
+  border-radius:22px;
+  letter-spacing:1px;
+  text-shadow:0 0 8px rgba(255,255,255,.35);
+  box-shadow:0 10px 35px rgba(0,0,0,.5);
+  animation:fadeUp 1.2s ease both;
+  line-height:1.3;
+}
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(18px) scale(.97);}
+  to{opacity:1; transform:none;}
+}
+
+/* =============================
+   CARD BASE (MEWAH)
+   ============================= */
+.card{
+  max-width:760px;
+  margin:26px auto;
+  padding:26px;
+  border-radius:20px;
+  background:var(--glass);
+  backdrop-filter:blur(6px);
+  box-shadow:0 12px 40px rgba(0,0,0,.6);
+  cursor:pointer;
+  transition:.25s ease;
+}
+.card:hover{
+  transform:translateY(-4px) scale(1.01);
+}
+
+/* ribbon premium */
+.ribbon{
+  margin:0 auto 14px;
+  width:100px;
+  height:40px;
+  background:linear-gradient(90deg,#f7ecd6,#f2dcac,#f7ecd6);
+  border-radius:26px;
+  box-shadow:0 8px 18px rgba(255,220,150,.4);
+}
+
+/* hidden text */
+.hidden{
+  display:none;
+  margin-top:12px;
+  animation:fade 0.45s ease;
+  font-size:16px;
+  line-height:1.55;
+  color:#eee;
+}
+@keyframes fade{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1;}
+}
+
+/* =============================
+   PHOTO BOX
+   ============================= */
+.photo-box{
+  max-width:760px;
+  margin:30px auto;
+  padding:22px;
+  border-radius:20px;
+  background:var(--glass);
+  box-shadow:0 12px 40px rgba(0,0,0,.6);
+}
+
+.photo{
+  width:100%;
+  max-width:460px;
+  border-radius:16px;
+  box-shadow:0 10px 28px rgba(0,0,0,.7);
+  transition:opacity .25s,transform .25s;
+}
+.photo:hover{
+  transform:scale(1.02);
+}
+
+/* center text below */
+.sub{
+  margin-top:8px;
+  opacity:.75;
+  font-size:13px;
+}
+
+/* =============================
+   FLOATING MAGIC ORBS
+   ============================= */
+.orb{
+  position:absolute;
+  width:70px;height:70px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.18),rgba(255,255,255,0));
+  animation:float 8s ease-in-out infinite;
+  filter:blur(6px);
+}
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-25px);}
+  100%{transform:translateY(0);}
+}
+
+/* orb positions */
+.orb1{top:20%;left:8%;}
+.orb2{top:60%;right:12%;animation-delay:1.5s;}
+.orb3{top:35%;right:35%;animation-delay:3s;}
+
+/* Special button */
+.special{
+  margin-top:40px;
+  display:inline-block;
+  padding:14px 34px;
+  border-radius:20px;
+  background:var(--glass);
+  box-shadow:0 10px 28px rgba(0,0,0,.55);
+  font-size:18px;
+  cursor:pointer;
+  transition:.25s;
+}
+.special:hover{transform:scale(1.05);}
+</style>
+</head>
+<body>
+
+<!-- Stars -->
+<script>
+for(let i=0;i<70;i++){
+  const s=document.createElement("div");
+  s.className="star";
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+  s.style.animationDuration=2+Math.random()*3+"s";
+  document.body.appendChild(s);
+}
+</script>
+
+<!-- Floating magical orbs -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="container">
+
+  <!-- MAIN TITLE -->
+  <div class="title">
+    Selamat ulang tahun Latieff \\(๑╹◡╹๑)ﾉ ✧
+  </div>
+
+  <!-- FIRST GIFT BOX -->
+  <div class="card" onclick="toggleBox('c1')">
+    <div class="ribbon"></div>
+    <div style="font-size:18px">Asa untuk Latief ✦</div>
+    <div id="c1" class="hidden">
+      Aku selalu berharap yang terbaik dalam hal apapun, tapi aku harap kamu selalu di kelilingi kebahagiaan layaknya Bulan yang di kelilingi Bintang yang indah 
+    </div>
+  </div>
+
+  <!-- PHOTO BOX -->
+  <div class="photo-box">
+    <img src="Bukankah.jpg" class="photo" id="photo" onclick="changePhoto()">
+    <div class="sub">klik ↑</div>
+  </div>
+
+  <!-- LONG CARD -->
+  <div class="card" onclick="toggleBox('c2')">
+    <div class="ribbon" style="width:80px;height:34px;"></div>
+    <div style="font-size:18px">Teruntuk Latief</div>
+    <div id="c2" class="hidden">
+      Walaupun waktu terus berjalan dan angin terus bertiup, jangan pernah berpikir kalau kamu sendiri, jangan pernah berpikir kalau kamu tertinggal. Karena kamu, Latief akan terus bersinar, bahkan saat ini—sampai seterusnya, bersinar dengan cara kamu sendiri.
+    </div>
+  </div>
+
+  <!-- SPECIAL BUTTON -->
+ <div class="special" onclick="window.location.href='Special.html'">
+  ✦ Special ✦
+  </div>
+
+</div>
+
+<script>
+/* toggle animations */
+function toggleBox(id){
+  const x=document.getElementById(id);
+  x.style.display = x.style.display==="block" ? "none":"block";
+}
+
+/* photo changer */
+let n=0;
+const list=[
+  "img src=Bukankah.jpg",
+  "Latief.jpg",
+  "Tief.jpg"
+];
+function changePhoto(){
+  const p=document.getElementById("photo");
+  n=(n+1)%list.length;
+  p.style.opacity=0;
+  setTimeout(()=>{ p.src=list[n]; p.style.opacity=1; },200);
+}
+
+/* special */
+function goSpecial(){
+  alert("Special.html");
+}
+</script>
+
+</body>
+</html>

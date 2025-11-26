@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Special Day</title>
+
+<!-- Cute readable fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        font-family: 'Quicksand', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #020617;
+        position: relative;
+        color: white;
+    }
+
+    /* Night sky stars */
+    .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.7;
+        animation: twinkle 2s infinite alternate ease-in-out;
+    }
+    @keyframes twinkle {
+        from { opacity: 0.2; transform: scale(1); }
+        to { opacity: 1; transform: scale(1.5); }
+    }
+
+    /* Flash/Blink */
+    .flash {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: radial-gradient(circle, rgba(255,255,255,0.7), transparent);
+        opacity: 0;
+        pointer-events: none;
+        animation: flashAnim 0.4s ease-out;
+    }
+    @keyframes flashAnim {
+        0% { opacity: 0.8; }
+        100% { opacity: 0; }
+    }
+
+    /* Floating animation */
+    .float {
+        animation: floating 4s ease-in-out infinite;
+    }
+    @keyframes floating {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* Main dialog box */
+    #mainBox {
+        width: 480px;
+        padding: 28px;
+        text-align: center;
+        background: #1f4d74;
+        border-radius: 15px;
+        font-family: 'Fredoka One', cursive;
+        font-size: 28px;
+        color: white;
+        opacity: 0;
+        animation: fadeIn 1.2s forwards ease-out;
+        box-shadow: 0 0 18px rgba(255,255,255,0.3);
+        transition: 0.3s;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.75); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Typing animation */
+    .typing {
+        border-right: 3px solid white;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typingAnim 1.7s steps(40), blinkCursor .8s infinite;
+    }
+    @keyframes typingAnim {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+    @keyframes blinkCursor {
+        0% { border-color: white; }
+        50% { border-color: transparent; }
+        100% { border-color: white; }
+    }
+
+    .btnRow {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .btn {
+        width: 150px;
+        padding: 12px 0;
+        background: #1f4d74;
+        color: white;
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        transition: 0.25s;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+
+    .btn:hover {
+        transform: scale(1.12) rotate(1deg);
+        background: #2b608a;
+        box-shadow: 0 0 12px rgba(255,255,255,0.4);
+    }
+
+    .btn:active {
+        transform: scale(0.9);
+    }
+
+    /* Sparkles */
+    .sparkle {
+        position: absolute;
+        font-size: 22px;
+        animation: floatUp 1.2s ease-out forwards;
+        pointer-events: none;
+    }
+    @keyframes floatUp {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(-60px) rotate(20deg); }
+    }
+
+    /* Confetti */
+    .confetti {
+        position: absolute;
+        width: 8px;
+        height: 14px;
+        opacity: 0.8;
+        animation: drop 2s linear forwards;
+    }
+    @keyframes drop {
+        from { transform: translateY(-30px) rotate(0deg); }
+        to { transform: translateY(100vh) rotate(360deg); }
+    }
+</style>
+</head>
+<body>
+
+<!-- Stars -->
+<script>
+for (let i = 0; i < 130; i++) {
+    const s = document.createElement("div");
+    s.className = "star";
+    const size = Math.random() * 3;
+    s.style.width = size + "px";
+    s.style.height = size + "px";
+    s.style.top = Math.random() * 100 + "%";
+    s.style.left = Math.random() * 100 + "%";
+    s.style.animationDelay = Math.random() * 2 + "s";
+    document.body.appendChild(s);
+}
+</script>
+
+<!-- Main UI -->
+<div id="mainContainer" class="float">
+    <div id="mainBox" class="typing"></div>
+
+    <div class="btnRow float">
+        <div class="btn" id="leftBtn">Special Day</div>
+        <div class="btn" id="rightBtn">Thursday</div>
+    </div>
+</div>
+
+<script>
+    const mainBox = document.getElementById("mainBox");
+    const leftBtn = document.getElementById("leftBtn");
+    const rightBtn = document.getElementById("rightBtn");
+
+    function flash() {
+        const fl = document.createElement("div");
+        fl.className = "flash";
+        document.body.appendChild(fl);
+        setTimeout(() => fl.remove(), 500);
+    }
+
+    function typeText(text) {
+        mainBox.classList.remove("typing");
+        void mainBox.offsetWidth;
+        mainBox.textContent = text;
+        mainBox.classList.add("typing");
+    }
+
+    function sparkleEffect(x, y) {
+        const sp = document.createElement("div");
+        sp.className = "sparkle";
+        sp.style.left = x + "px";
+        sp.style.top = y + "px";
+        sp.textContent = ["✨","💫","⭐","🌟"][Math.floor(Math.random()*4)];
+        document.body.appendChild(sp);
+        setTimeout(()=> sp.remove(), 1200);
+    }
+
+    function confetti() {
+        for (let i=0;i<120;i++){
+            let c = document.createElement("div");
+            c.className="confetti";
+            c.style.left = Math.random()*100+"%";
+            c.style.background = `hsl(${Math.random()*360},80%,70%)`;
+            c.style.animationDuration = (Math.random()*2+1)+"s";
+            document.body.appendChild(c);
+            setTimeout(()=>c.remove(),3000);
+        }
+    }
+
+    function clickEffects(e) {
+        const rect = e.target.getBoundingClientRect();
+        sparkleEffect(rect.left + rect.width/2, rect.top);
+        flash();
+    }
+
+    leftBtn.addEventListener("click", clickEffects);
+    rightBtn.addEventListener("click", clickEffects);
+
+    function reset() {
+        typeText("Do you know what day it is?");
+        leftBtn.textContent = "Special Day";
+        rightBtn.textContent = "Thursday";
+    }
+
+    function goNextPage() {
+        window.location.href = "Halaman 2.html"; /* ← pastikan nama file sudah diganti */
+    }
+
+    function lastPage() {
+        typeText("100!!! Good Boy ╹⁠◡⁠╹");
+
+        leftBtn.textContent = "I know";
+        rightBtn.textContent = "Thank you";
+
+        leftBtn.addEventListener("click", goNextPage);
+        rightBtn.addEventListener("click", goNextPage);
+
+        confetti();
+    }
+
+    // INITIAL PAGE TEXT
+    setTimeout(() => {
+        typeText("Do you know what day it is?");
+    }, 300);
+
+    /* MAIN BUTTON LOGIC */
+    leftBtn.addEventListener("click", () => {
+
+        if (mainBox.textContent.includes("Do you know")) {
+            typeText("Why special??");
+            leftBtn.textContent = "Today is Lala's birthday";
+            rightBtn.textContent = "i don't know";
+        }
+
+        else if (mainBox.textContent.includes("Why special")) {
+            lastPage();
+        }
+
+        else if (mainBox.textContent.includes("WHY SPECIAL")) {
+            if (leftBtn.textContent === "IDK") reset();
+        }
+    });
+
+    rightBtn.addEventListener("click", () => {
+
+        if (mainBox.textContent.includes("Do you know") && rightBtn.textContent === "Thursday") {
+            rightBtn.textContent = "Special Day";
+            leftBtn.textContent = "Special Day";
+        }
+
+        else if (rightBtn.textContent === "Special Day" && mainBox.textContent.includes("Do you know")) {
+            typeText("Why special??");
+            leftBtn.textContent = "Today is Lala's birthday";
+            rightBtn.textContent = "i don't know";
+        }
+
+        else if (rightBtn.textContent === "i don't know") {
+            typeText("WHY SPECIAL?!");
+            rightBtn.textContent = "TODAY IS LALA'S BIRTHDAY";
+            leftBtn.textContent = "IDK";
+        }
+
+        else if (rightBtn.textContent === "TODAY IS LALA'S BIRTHDAY") {
+            lastPage();
+        }
+    });
+</script>
+
+</body>
+</html>
